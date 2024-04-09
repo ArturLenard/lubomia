@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+	<title>skrypty</title>
+	<meta name="description" content="mechanik raciborz">
+	<meta name="author content="Artur Lenard">
+  </head>
+
+<SPAN id="Data" style="POSITION: absolute; LEFT: 0; TOP: 0; FONT-SIZE: 10pt;
+FONT-WEIGHT: bold; COLOR: #012345; FONT-FAMILY: Verdana, Arial;"></SPAN>
+<script>
+
+function czas() {
+
+ if (!document.layers&&!document.getElementById&&!document.all)
+ return
+
+  var godzina, minuty, sekundy, dzien, licz_dzien, miesiac, dzisiaj, rok, tekst_miesiac, tekst_dzien;
+  dzisiaj = new Date();
+  godzina=dzisiaj.getHours();
+  minuty=dzisiaj.getMinutes();
+  sekundy=dzisiaj.getSeconds();
+  rok=dzisiaj.getYear();
+  dzien=dzisiaj.getDate();
+  licz_dzien=dzisiaj.getDay();
+  if (licz_dzien==0) {tekst_dzien="Niedziela"}
+  if (licz_dzien==1) {tekst_dzien="Poniedziałek"}
+  if (licz_dzien==2) {tekst_dzien="Wtorek"}
+  if (licz_dzien==3) {tekst_dzien="Środa"}
+  if (licz_dzien==4) {tekst_dzien="Czwartek"}
+  if (licz_dzien==5) {tekst_dzien="Piątek"}
+  if (licz_dzien==6) {tekst_dzien="Sobota"}
+  miesiac=dzisiaj.getMonth()+1;
+  if (miesiac==1) {tekst_miesiac="stycznia"}
+  if (miesiac==2) {tekst_miesiac="lutego"}
+  if (miesiac==3) {tekst_miesiac="marca"}
+  if (miesiac==4) {tekst_miesiac="kwietnia"}
+  if (miesiac==5) {tekst_miesiac="maja"}
+  if (miesiac==6) {tekst_miesiac="czerwca"}
+  if (miesiac==7) {tekst_miesiac="lipca"}
+  if (miesiac==8) {tekst_miesiac="sierpnia"}
+  if (miesiac==9) {tekst_miesiac="września"}
+  if (miesiac==10) {tekst_miesiac="października"}
+  if (miesiac==11) {tekst_miesiac="listopada"}
+  if (miesiac==12) {tekst_miesiac="grudnia"}
+         if ((rok>=00) && (rok<=1900)) {rok=1900+rok;}
+         if (miesiac < 10) {miesiac="0"+miesiac;}
+         if (dzien < 10) {dzien="0"+dzien;}
+         if (godzina < 10) {godzina="0"+godzina;}
+         if (minuty < 10) {minuty="0"+minuty;}
+         if (sekundy < 10) {sekundy="0"+sekundy;}
+  pelnyczas=tekst_dzien + ", " + dzien + " " + tekst_miesiac + " "+rok+"<br>"
+        + godzina+":"+minuty+":"+sekundy;
+
+
+if (document.getElementById){
+document.getElementById("Data").innerHTML=pelnyczas
+}
+else if (document.layers){
+document.layers.Data.document.write(pelnyczas)
+}
+else if (document.all)
+Data.innerHTML=pelnyczas
+
+// Czestotliwosc odswiezania
+setTimeout("czas()",500)
+}
+
+</script>
+
+
+
+<body onLoad="czas()">
+
+  
+  </body>
+<p> 
+<style>
+.shakeimage{
+position:relative
+}
+</style>
+<script language="JavaScript1.2">
+
+/*
+Shake image script (onMouseover)-
+© Dynamic Drive (www.dynamicdrive.com)
+For full source code, usage terms, and 100's more DHTML scripts, visit http://dynamicdrive.com
+*/
+
+//configure shake degree (where larger # equals greater shake)
+var rector=3
+
+///////DONE EDITTING///////////
+var stopit=0
+var a=1
+
+function init(which){
+stopit=0
+shake=which
+shake.style.left=0
+shake.style.top=0
+}
+
+function rattleimage(){
+if ((!document.all&&!document.getElementById)||stopit==1)
+return
+if (a==1){
+shake.style.top=parseInt(shake.style.top)+rector+"px"
+}
+else if (a==2){
+shake.style.left=parseInt(shake.style.left)+rector+"px"
+}
+else if (a==3){
+shake.style.top=parseInt(shake.style.top)-rector+"px"
+}
+else{
+shake.style.left=parseInt(shake.style.left)-rector+"px"
+}
+if (a<4)
+a++
+else
+a=1
+setTimeout("rattleimage()",50)
+}
+
+function stoprattle(which){
+stopit=1
+which.style.left=0
+which.style.top=0
+}
+
+</script>
+<img src="ckziu.png" class="shakeimage" onMouseover="init(this);rattleimage()" onMouseout="stoprattle(this);top.focus()" onClick="top.focus()">
+</p>
+<p>najedz kursorem na obrazek</p>
+<p>
+var delay=7000 //czas opóżnienia
+var curindex=0
+
+var randomimages=new Array()
+
+randomimages[0]="ckziu.png"
+randomimages[1]="domek.png"
+randomimages[2]="google.jfif"
+
+var preload=new Array()
+
+for (n=0;n<randomimages.length;n++)
+{
+        preload[n]=new Image()
+        preload[n].src=randomimages[n]
+}
+
+document.write('<center><a href=\"link do strony, pliku po kliknięciu\"><img name="defaultimage" src="'+randomimages[Math.floor(Math.random()*(randomimages.length))]+'" width=440 alt="Zobacz galerie zdjec"></a></center>')
+
+function rotateimage()
+{
+
+if (curindex==(tempindex=Math.floor(Math.random()*(randomimages.length)))){
+curindex=curindex==0? 1 : curindex-1
+}
+else
+curindex=tempindex
+
+        document.images.defaultimage.src=randomimages[curindex]
+}
+
+setInterval("rotateimage()",delay)
+ 
+</p>
+</html>
